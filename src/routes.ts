@@ -3,6 +3,7 @@ import { TransactionController } from "./controller/TransactionController";
 import { CategoryController } from "./controller/CategoryController";
 import { ExternalController } from "./controller/ExternalController";
 import { TestController } from "./controller/TestController";
+import { DashboardController } from "./controller/DashboardController";
 
 export const Routes = [
     {
@@ -40,5 +41,23 @@ export const Routes = [
         route: "/external/transactions",
         controller: ExternalController,
         action: "saveTransaction"
+    },
+    {
+        method: "get",
+        route: "/dashboard/ranking/categories",
+        controller: DashboardController,
+        action: "getRankingCategorias"
+    },
+    {
+        method: "get",
+        route: "/dashboard/presupuesto/categories",
+        controller: DashboardController,
+        action: "getPresupuestoPorCategorias"
+    },
+    {
+        method: "get",
+        route: "/dashboard/presupuesto/category",
+        controller: DashboardController,
+        action: "getPresupuestoPorCategoria"
     }
 ];

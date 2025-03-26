@@ -28,7 +28,8 @@ AppDataSource.initialize().then(async () => {
 
     // setup express app here
     app.use(bodyParser.json());
-    app.use(cors());
+    const whiteList=['http://localhost:4200'];
+    app.use(cors({origin: whiteList}));
     app.use("/api", router);
 
     // start express server
