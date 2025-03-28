@@ -7,6 +7,7 @@ import { Account } from "../entity/Account";
 import { Transaction } from "../entity/Transaction";
 import { GlobalConstants } from "../shared/constants";
 import { Parameter } from "../entity/Parameter";
+import { TransactionUtil } from "./TransactionUtil";
 
 export class ExternalController {
 
@@ -42,31 +43,30 @@ export class ExternalController {
         try {
             // Obtener datos del request
             const {
-                id,
-                account_id,
-                category_id,
-                tipo_transaccion,
+                user_id,
+                cuenta_id,
+                categoria_id,
+                tipo_transaccion_id,
                 monto,
                 descripcion
             } = request.body;
-            let person = await AppDataSource.getRepository(Person).findOneBy({phone_number: id, estado: true});
-            let user = await AppDataSource.getRepository(User).findOne({where: {person: {id: person.id}, estado: true}});
+            let person = await queryRunner.manager.getRepository(Person).findOneBy({phone_number: user_id, estado: true});
+            console.log(person);
+            if (!person) {
+                throw new Error("No se encontró la persona");
+            }
+            let user = await queryRunner.manager.getRepository(User).findOneBy({person: {id: person.id}, estado: true});
+            if (!user) {
+                throw new Error("No se encontró el usuario");
+            }
 
-            let account = await queryRunner.manager.getRepository(Account).findOneBy({id: account_id, user_id: user.id, estado: true});
-            let category = await queryRunner.manager.getRepository(Category).findOneBy({id: category_id, user_id: user.id, estado: true});
-            let parametro = await queryRunner.manager.getRepository(Parameter).findOneBy({parametro_valor: tipo_transaccion, parametro_clave: GlobalConstants.KEY_TIPO_TRANSACCION, estado: true});
-
+            let account = await queryRunner.manager.getRepository(Account).findOneBy({id: cuenta_id, user_id: user.id, estado: true});
+            let category = await queryRunner.manager.getRepository(Category).findOneBy({id: categoria_id, user_id: user.id, estado: true});
+            let parametro = await queryRunner.manager.getRepository(Parameter).findOneBy({parametro_valor: tipo_transaccion_id, parametro_clave: GlobalConstants.KEY_TIPO_TRANSACCION, estado: true});
             // Crear transaccion
-            let transaction = new Transaction();
-            transaction.account = account;
-            transaction.category = category;
-            transaction.tipo_transaccion_id = parseInt(parametro.parametro_valor);
-            transaction.monto = monto;
-            transaction.fecha = new Date();
-            transaction.descripcion = descripcion;
-            transaction.user_id = user.id;
-            await queryRunner.manager.save(transaction);
-            
+            let params = { account, category, parametro_valor: parametro.parametro_valor, monto, descripcion, user_id: user.id };
+            let transaction = await TransactionUtil.save(queryRunner, params);
+
             let data = {
                 user: person.first_name,
                 account: account.nombre,
@@ -75,8 +75,7 @@ export class ExternalController {
                 monto: transaction.monto,
                 descripcion: transaction.descripcion
             };
-            //await queryRunner.commitTransaction();
-            await queryRunner.rollbackTransaction();
+            await queryRunner.commitTransaction();
             response.status(200).json({ message: "Transaccion ha sido guardada.", data });
         } catch (err) {
             await queryRunner.rollbackTransaction();
