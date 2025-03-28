@@ -20,15 +20,15 @@ export class ExternalController {
             
             // Obtener cuentas
             let accounts = await AppDataSource.getRepository(Account).findBy({user_id: user.id, estado: true});
-            let accountsNames = accounts.map((account) => `${account.id}) ${account.nombre}`).join(" ");
+            let accountsNames = accounts.map((account) => `${account.id}-${account.nombre}`).join(" ");
 
             // Obtener categorias de ingreso
             let catIngreso = await AppDataSource.getRepository(Category).findBy({user_id: user.id, tipo_transaccion_id: GlobalConstants.TIPO_TRANSACCION_INGRESO, estado: true});
-            let catIngresoNames = catIngreso.map((category) => `${category.id}) ${category.nombre}`).join(" ");
+            let catIngresoNames = catIngreso.map((category) => `${category.id}-${category.nombre}`).join(" ");
 
             // Obtener categorias de gasto
             let catGasto = await AppDataSource.getRepository(Category).findBy({user_id: user.id, tipo_transaccion_id: GlobalConstants.TIPO_TRANSACCION_GASTO, estado: true});
-            let catGastoNames = catGasto.map((category) => `${category.id}) ${category.nombre}`).join(" ");
+            let catGastoNames = catGasto.map((category) => `${category.id}-${category.nombre}`).join(" ");
 
             response.status(200).json({ cuentas: accountsNames, ingreso_categorias: catIngresoNames, gasto_categorias: catGastoNames });
         } catch (err) {
