@@ -1,9 +1,9 @@
-import { UserController } from "./controller/UserController";
-import { TransactionController } from "./controller/TransactionController";
-import { CategoryController } from "./controller/CategoryController";
-import { ExternalController } from "./controller/ExternalController";
-import { TestController } from "./controller/TestController";
-import { DashboardController } from "./controller/DashboardController";
+import { UserController } from "./modules/users/controllers/UserController";
+import { TransactionController } from "./modules/transactions/controllers/TransactionController";
+import { CategoryController } from "./modules/categories/controllers/CategoryController";
+import { WhatsAppController } from "./modules/whatsapp/controllers/WhatsAppController";
+import { TestController } from "./modules/test/controllers/TestController";
+import { DashboardController } from "./modules/dashboard/controllers/DashboardController";
 
 export const Routes = [
     {
@@ -30,16 +30,16 @@ export const Routes = [
         controller: CategoryController,
         action: "allByID"
     },
-    { // => /external/data/<phone_number>
+    { // => /whatsapp/data/<phone_number>
         method: "get",
-        route: "/external/data/:id",
-        controller: ExternalController,
+        route: "/whatsapp/data/:id",
+        controller: WhatsAppController,
         action: "getDataByID"
     },
     {
         method: "post",
-        route: "/external/transactions",
-        controller: ExternalController,
+        route: "/whatsapp/transactions",
+        controller: WhatsAppController,
         action: "saveTransaction"
     },
     {

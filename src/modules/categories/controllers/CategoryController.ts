@@ -1,8 +1,8 @@
-import { AppDataSource } from "../data-source";
+import { AppDataSource } from "../../../data-source";
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entity/User";
-import { Category } from "../entity/Category";
-import { Person } from "../entity/Person";
+import { Person } from "../../users/entities/Person";
+import { User } from "../../users/entities/User";
+import { Category } from "../entities/Category";
 
 export class CategoryController {
 

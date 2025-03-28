@@ -1,7 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
-import { Account } from './Account';
-import { Category } from './Category';
-import { Parameter } from './Parameter';
+import { Account } from '../../accounts/entities/Account';
+import { Category } from '../../categories/entities/Category';
 
 @Entity('transactions', { schema: 'public' })
 export class Transaction {

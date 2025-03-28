@@ -1,11 +1,11 @@
-import { AppDataSource } from "../data-source";
+import { AppDataSource } from "../../../data-source";
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entity/User";
-import { Account } from "../entity/Account";
-import { Category } from "../entity/Category";
-import { Parameter } from "../entity/Parameter";
-import { GlobalConstants } from "../shared/constants";
-import { Person } from "../entity/Person";
+import { Account } from "../../accounts/entities/Account";
+import { Parameter } from "../../shared/entities/Parameter";
+import { GlobalConstants } from "../../shared/utils/constants";
+import { Person } from "../entities/Person";
+import { User } from "../entities/User";
+import { Category } from "../../categories/entities/Category";
 
 export class UserController {
 

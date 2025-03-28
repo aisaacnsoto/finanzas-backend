@@ -1,5 +1,5 @@
 import { QueryRunner } from "typeorm";
-import { Transaction } from "../entity/Transaction";
+import { Transaction } from "../entities/Transaction";
 
 export class TransactionUtil {
 

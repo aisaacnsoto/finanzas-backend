@@ -1,10 +1,10 @@
-import { AppDataSource } from "../data-source";
+import { AppDataSource } from "../../../data-source";
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entity/User";
-import { Account } from "../entity/Account";
-import { Transaction } from "../entity/Transaction";
-import { Category } from "../entity/Category";
-import { GlobalConstants } from "../shared/constants";
+import { Account } from "../../accounts/entities/Account";
+import { GlobalConstants } from "../../shared/utils/constants";
+import { User } from "../../users/entities/User";
+import { Category } from "../../categories/entities/Category";
+import { Transaction } from "../entities/Transaction";
 
 export class TransactionController {
 

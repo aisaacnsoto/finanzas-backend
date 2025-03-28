@@ -1,11 +1,5 @@
-import { AppDataSource } from "../data-source";
+import { AppDataSource } from "../../../data-source";
 import { NextFunction, Request, Response } from "express";
-import { User } from "../entity/User";
-import { Account } from "../entity/Account";
-import { Category } from "../entity/Category";
-import { Parameter } from "../entity/Parameter";
-import { GlobalConstants } from "../shared/constants";
-import { Person } from "../entity/Person";
 
 export class DashboardController {
 

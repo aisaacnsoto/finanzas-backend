@@ -1,12 +1,12 @@
 import "reflect-metadata";
 import "dotenv/config";
 import { DataSource } from "typeorm";
-import { Account } from "./entity/Account";
-import { Category } from "./entity/Category";
-import { Parameter } from "./entity/Parameter";
-import { Transaction } from "./entity/Transaction";
-import { User } from "./entity/User";
-import { Person } from "./entity/Person";
+import { Account } from "./modules/accounts/entities/Account";
+import { Parameter } from "./modules/shared/entities/Parameter";
+import { Person } from "./modules/users/entities/Person";
+import { Category } from "./modules/categories/entities/Category";
+import { Transaction } from "./modules/transactions/entities/Transaction";
+import { User } from "./modules/users/entities/User";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
