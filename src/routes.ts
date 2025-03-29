@@ -32,7 +32,7 @@ export const Routes = [
     },
     { // => /whatsapp/data/<phone_number>
         method: "get",
-        route: "/whatsapp/data/:id",
+        route: "/whatsapp/data/:phone_number",
         controller: WhatsAppController,
         action: "getDataByID"
     },
@@ -41,6 +41,24 @@ export const Routes = [
         route: "/whatsapp/transactions",
         controller: WhatsAppController,
         action: "saveTransaction"
+    },
+    {
+        method: "post",
+        route: "/whatsapp/accounts",
+        controller: WhatsAppController,
+        action: "saveAccount"
+    },
+    {
+        method: "post",
+        route: "/whatsapp/categories",
+        controller: WhatsAppController,
+        action: "saveCategory"
+    },
+    {
+        method: "post",
+        route: "/whatsapp/budgets",
+        controller: WhatsAppController,
+        action: "saveBudget"
     },
     {
         method: "get",

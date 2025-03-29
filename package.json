@@ -15,6 +15,7 @@
       "cors": "^2.8.5",
       "dotenv": "^16.4.7",
       "express": "^4.21.2",
+      "luxon": "^3.6.0",
       "pg": "^8.4.0",
       "reflect-metadata": "^0.1.13",
       "typeorm": "0.3.21"
@@ -22,6 +23,7 @@
    "devDependencies": {
       "@types/cors": "^2.8.17",
       "@types/express": "^5.0.1",
+      "@types/luxon": "^3.4.2",
       "@types/node": "^16.11.10",
       "ts-node": "10.9.1",
       "ts-node-dev": "^2.0.0",
